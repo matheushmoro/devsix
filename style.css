@@ -21,6 +21,19 @@ body {
 
 html {
     scroll-behavior: smooth;
+    cursor: url('./icons/normal_select.gif'), auto;
+}
+
+a,
+button,
+input[type="button"],
+input[type="submit"],
+[type="reset"],
+[class*="btn"],
+[id="ajuda"] details,
+[id="ajuda"] details > summary,
+[role="button"] {
+    cursor: url('./icons/link_select.gif'), pointer !important;
 }
 
 .onepage-main {

@@ -273,6 +273,122 @@
             </section>
         </section>
 
+        <section id="briefing" class="onepage-section">
+            <div class="briefing-container">
+                <div class="briefing-header">
+                    <span class="briefing-kicker">COMECE SEU PROJETO</span>
+                    <h2>Envie seu <span class="briefing-highlight">briefing</span></h2>
+                    <p>Preencha o formulario abaixo e receba uma proposta personalizada em ate 24h.</p>
+                </div>
+
+                <form class="briefing-form" id="briefingForm">
+                    <div class="briefing-grid briefing-grid-two">
+                        <div class="form-group">
+                            <label for="briefing-name">Nome completo *</label>
+                            <input type="text" id="briefing-name" name="briefing-name" placeholder="Seu nome" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-email">Email *</label>
+                            <input type="email" id="briefing-email" name="briefing-email" placeholder="seu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-whatsapp">WhatsApp *</label>
+                            <input type="tel" id="briefing-whatsapp" name="briefing-whatsapp" placeholder="(11) 99999-9999" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-company">Nome da empresa</label>
+                            <input type="text" id="briefing-company" name="briefing-company" placeholder="Sua empresa">
+                        </div>
+                    </div>
+
+                    <div class="briefing-grid">
+                        <div class="form-group">
+                            <label for="briefing-segment">Segmento de atuacao *</label>
+                            <input type="text" id="briefing-segment" name="briefing-segment" placeholder="Ex: Alimentacao, Moda, Saude..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-has-site">Ja possui site?</label>
+                            <select id="briefing-has-site" name="briefing-has-site">
+                                <option value="">Selecione</option>
+                                <option value="sim">Sim</option>
+                                <option value="nao">Nao</option>
+                                <option value="em-construcao">Em construcao</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-goal">Qual o objetivo principal do site? *</label>
+                            <select id="briefing-goal" name="briefing-goal" required>
+                                <option value="">Selecione</option>
+                                <option value="captacao">Captacao de leads</option>
+                                <option value="vendas">Vendas online</option>
+                                <option value="institucional">Presenca institucional</option>
+                                <option value="portfolio">Portfolio</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-pages">Quais paginas gostaria de ter?</label>
+                            <input type="text" id="briefing-pages" name="briefing-pages" placeholder="Ex: Home, Sobre, Servicos, Contato, Blog...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-references">Sites de referencia (que voce gosta)</label>
+                            <input type="text" id="briefing-references" name="briefing-references" placeholder="Cole links de sites que te inspiram">
+                        </div>
+                    </div>
+
+                    <div class="briefing-grid briefing-grid-two">
+                        <div class="form-group">
+                            <label for="briefing-deadline">Prazo desejado</label>
+                            <select id="briefing-deadline" name="briefing-deadline">
+                                <option value="">Selecione</option>
+                                <option value="7">Em ate 7 dias</option>
+                                <option value="15">Em ate 15 dias</option>
+                                <option value="30">Em ate 30 dias</option>
+                                <option value="flexivel">Prazo flexivel</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-budget">Orcamento estimado</label>
+                            <select id="briefing-budget" name="briefing-budget">
+                                <option value="">Selecione</option>
+                                <option value="ate-1500">Ate R$ 1.500</option>
+                                <option value="1500-3000">R$ 1.500 a R$ 3.000</option>
+                                <option value="3000-6000">R$ 3.000 a R$ 6.000</option>
+                                <option value="acima-6000">Acima de R$ 6.000</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="briefing-grid">
+                        <div class="form-group">
+                            <label for="briefing-notes">Observacoes adicionais</label>
+                            <textarea id="briefing-notes" name="briefing-notes" rows="5"
+                                placeholder="Alguma informacao importante que devemos saber?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="briefing-files">Logotipo e arquivos</label>
+                            <div class="briefing-upload">
+                                <input type="file" id="briefing-files" name="briefing-files" multiple>
+                                <p>Clique para enviar seu logotipo, imagens ou arquivos</p>
+                                <small>PNG, JPG, PDF, AI (max. 10MB cada)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="briefing-submit">Enviar Briefing</button>
+                </form>
+            </div>
+        </section>
+
         <section id="ajuda" class="onepage-section">
             <div class="faq-container">
                 <div class="faq-header">

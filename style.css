@@ -1668,6 +1668,179 @@ header {
     text-decoration: none;
 }
 
+/* --- Estilos da Secao Briefing --- */
+
+#briefing {
+    padding-top: 28px;
+    padding-bottom: 28px;
+}
+
+.briefing-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 20px;
+}
+
+.briefing-header {
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.briefing-kicker {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    font-weight: 800;
+    color: #c4b5fd;
+    margin-bottom: 10px;
+}
+
+.briefing-header h2 {
+    font-size: clamp(32px, 4vw, 56px);
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.briefing-highlight {
+    color: #a78bfa;
+}
+
+.briefing-header p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: #e9d5ff;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.briefing-form {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(95, 29, 135, 0.12) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.45);
+}
+
+.briefing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.briefing-grid-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.briefing-form .form-group {
+    gap: 7px;
+}
+
+.briefing-form .form-group label {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.briefing-form input,
+.briefing-form select,
+.briefing-form textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f5f5f5;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.briefing-form input::placeholder,
+.briefing-form textarea::placeholder {
+    color: rgba(233, 213, 255, 0.55);
+}
+
+.briefing-form input:focus,
+.briefing-form select:focus,
+.briefing-form textarea:focus {
+    outline: none;
+    border-color: #5f1d87;
+    box-shadow: 0 0 0 3px rgba(95, 29, 135, 0.3);
+}
+
+.briefing-form select option {
+    background: #171922;
+    color: #f5f5f5;
+}
+
+.briefing-upload {
+    border: 1px dashed rgba(167, 139, 250, 0.4);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.briefing-upload input[type="file"] {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0 auto 12px;
+}
+
+.briefing-upload p {
+    color: #e9d5ff;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.briefing-upload small {
+    color: #c4b5fd;
+    font-size: 12px;
+}
+
+.briefing-submit {
+    width: 100%;
+    margin-top: 6px;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 22px;
+    font-size: 17px;
+    font-weight: 800;
+    color: #ffffff;
+    background: linear-gradient(135deg, #5f1d87 0%, #7c3aed 100%);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.briefing-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(95, 29, 135, 0.35);
+}
+
+@media (max-width: 768px) {
+    .briefing-container {
+        padding-top: 36px;
+    }
+
+    .briefing-form {
+        padding: 20px;
+    }
+
+    .briefing-grid-two {
+        grid-template-columns: 1fr;
+    }
+
+    .briefing-header p {
+        font-size: 16px;
+    }
+}
+
 /* --- Footer --- */
 
 .site-footer {

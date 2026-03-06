@@ -969,178 +969,446 @@ header {
     }
 }
 
-/* --- Estilos da Página Modelos (Prateleira Virtual) --- */
+/* --- Estilos da Página Modelos (Carrossel) --- */
 
-.shelf-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
+#modelos.onepage-section {
+    min-height: 78vh;
+    padding: 0;
+    scroll-margin-top: 80px;
 }
 
-.shelf-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.shelf-header h2 {
-    font-size: 36px;
-    color: #ffffff;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.shelf-grid {
+.modelos-carousel {
+    min-height: 78vh;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding-bottom: 40px;
-}
-
-.product-card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: minmax(50px, 70px) minmax(0, 1fr) minmax(50px, 70px);
+    grid-template-rows: 1fr auto;
     align-items: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
+    gap: 16px;
+    padding: 72px 24px 24px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 10% 18%, rgba(216, 116, 255, 0.26), transparent 32%),
+        radial-gradient(circle at 88% 16%, rgba(170, 126, 255, 0.24), transparent 35%),
+        radial-gradient(circle at 70% 78%, rgba(120, 56, 196, 0.28), transparent 38%),
+        linear-gradient(160deg, #160920 0%, #24103c 46%, #3a1860 100%);
 }
 
-.product-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
-    border-color: #e9d5ff;
+.modelos-stage {
+    grid-column: 2;
+    grid-row: 1;
+    width: min(980px, 100%);
+    height: min(62vh, 540px);
+    margin: 0 auto;
+    position: relative;
+    perspective: 1500px;
+    --modelo-anim-ms: 560ms;
 }
 
-.product-card img {
+.modelos-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+.modelos-glow-left {
+    left: -90px;
+    top: 120px;
+    background: radial-gradient(circle, rgba(224, 147, 255, 0.4) 0%, rgba(224, 147, 255, 0) 70%);
+}
+
+.modelos-glow-right {
+    right: -90px;
+    top: 260px;
+    background: radial-gradient(circle, rgba(181, 122, 255, 0.35) 0%, rgba(181, 122, 255, 0) 70%);
+}
+
+.modelo-slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(680px, 72%);
+    height: 100%;
+    border-radius: 26px;
+    border: 1px solid rgba(216, 180, 254, 0.4);
+    background: rgba(28, 12, 46, 0.55);
+    box-shadow: 0 30px 80px rgba(8, 9, 21, 0.4);
+    backdrop-filter: blur(8px);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.modelo-preview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(390px, 41%);
+    height: 82%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(216, 180, 254, 0.25);
+    box-shadow: 0 20px 60px rgba(11, 5, 21, 0.42);
+    background: rgba(28, 12, 46, 0.35);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.modelo-preview::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(14, 8, 24, 0.1) 0%, rgba(14, 8, 24, 0.65) 100%);
+}
+
+.modelo-preview-left {
+    transform: translate(-126%, -50%) scale(0.76) rotateY(36deg);
+    opacity: 0.72;
+}
+
+.modelo-preview-right {
+    transform: translate(26%, -50%) scale(0.76) rotateY(-36deg);
+    opacity: 0.72;
+}
+
+.modelo-preview-media {
+    height: 100%;
     width: 100%;
-    height: 220px;
-    object-fit: contain;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
-    transition: transform 0.3s ease;
 }
 
-.product-card:hover img {
-    transform: scale(1.05);
-}
-
-.product-info {
-    text-align: center;
+.modelo-preview-media img,
+.modelo-preview-media video {
     width: 100%;
-}
-
-.product-info h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-.product-info .price {
-    font-size: 24px;
-    color: #e9d5ff;
-    font-weight: 700;
-    margin-bottom: 20px;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
-.product-btn {
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    border: 2px solid #5f1d87;
-    color: white;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.product-btn:hover {
-    background: #5f1d87;
-    box-shadow: 0 0 15px #5f1d87;
-    transform: translateY(-2px);
-}
-
-/* --- Modelo em Destaque (Banner Horizontal) --- */
-
-.featured-model-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    border-radius: 24px;
-    padding: 40px;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    position: relative;
+.modelo-preview-title {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    z-index: 2;
+    font-size: 14px;
+    font-weight: 700;
+    color: #f5eaff;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.featured-content {
-    flex: 1;
-    z-index: 1;
+.modelos-stage.is-animating-next .modelo-slide {
+    animation: modeloCenterToLeft var(--modelo-anim-ms) ease both;
 }
 
-.featured-badge {
-    background: #5f1d87;
-    color: #ffffff;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.modelos-stage.is-animating-next #modelo-next-preview {
+    animation: modeloRightToCenter var(--modelo-anim-ms) ease both;
+}
+
+.modelos-stage.is-animating-next #modelo-prev-preview {
+    animation: modeloLeftToFar var(--modelo-anim-ms) ease both;
+}
+
+.modelos-stage.is-animating-prev .modelo-slide {
+    animation: modeloCenterToRight var(--modelo-anim-ms) ease both;
+}
+
+.modelos-stage.is-animating-prev #modelo-prev-preview {
+    animation: modeloLeftToCenter var(--modelo-anim-ms) ease both;
+}
+
+.modelos-stage.is-animating-prev #modelo-next-preview {
+    animation: modeloRightToFar var(--modelo-anim-ms) ease both;
+}
+
+.modelo-slide-header {
+    padding: 16px 20px 10px;
+    background: linear-gradient(180deg, rgba(216, 180, 254, 0.28) 0%, rgba(216, 180, 254, 0.06) 100%);
+}
+
+.modelo-slide-kicker {
     display: inline-block;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(95, 29, 135, 0.4);
-}
-
-.featured-content h3 {
-    font-size: 32px;
-    color: #ffffff;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.featured-content p {
-    font-size: 18px;
+    font-size: 12px;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
     color: #e9d5ff;
-    margin-bottom: 25px;
-    line-height: 1.6;
+    margin-bottom: 8px;
 }
 
-.featured-image {
-    flex: 1;
-    max-width: 500px;
-    z-index: 1;
+.modelo-slide-header h2 {
+    font-size: clamp(24px, 3.5vw, 44px);
+    line-height: 1.1;
+    color: #ffffff;
 }
 
-.featured-image img,
-.featured-image video {
+.modelo-media {
+    height: 100%;
+    min-height: 0;
+    background: rgba(18, 8, 29, 0.45);
+}
+
+.modelo-media img,
+.modelo-media video {
     width: 100%;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.5s ease;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.modelo-info {
+    padding: 12px 20px 16px;
+    background: linear-gradient(180deg, rgba(40, 18, 67, 0.92) 0%, rgba(20, 9, 34, 0.95) 100%);
+}
+
+.modelo-info p {
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.6;
+    color: #f3e8ff;
+    max-width: 900px;
+}
+
+.carousel-arrow {
+    grid-row: 1;
+    align-self: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(216, 180, 254, 0.5);
+    background: rgba(43, 17, 72, 0.72);
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+    z-index: 4;
+}
+
+.carousel-arrow-left {
+    grid-column: 1;
+}
+
+.carousel-arrow-right {
+    grid-column: 3;
+}
+
+.carousel-arrow:hover {
+    transform: scale(1.06);
+    background: rgba(83, 31, 132, 0.92);
+}
+
+.carousel-dots {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.carousel-dots button {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1px solid rgba(216, 180, 254, 0.78);
+    background: rgba(216, 180, 254, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.carousel-dots button.active {
+    background: #e9d5ff;
+    transform: scale(1.2);
+}
+
+@keyframes modelosFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modeloCenterToLeft {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-126%, -50%) scale(0.76) rotateY(36deg);
+        opacity: 0.68;
+    }
+}
+
+@keyframes modeloRightToCenter {
+    from {
+        transform: translate(26%, -50%) scale(0.76) rotateY(-36deg);
+        opacity: 0.72;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes modeloLeftToFar {
+    from {
+        transform: translate(-126%, -50%) scale(0.76) rotateY(36deg);
+        opacity: 0.72;
+    }
+
+    to {
+        transform: translate(-190%, -50%) scale(0.62) rotateY(42deg);
+        opacity: 0;
+    }
+}
+
+@keyframes modeloCenterToRight {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(26%, -50%) scale(0.76) rotateY(-36deg);
+        opacity: 0.68;
+    }
+}
+
+@keyframes modeloLeftToCenter {
+    from {
+        transform: translate(-126%, -50%) scale(0.76) rotateY(36deg);
+        opacity: 0.72;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes modeloRightToFar {
+    from {
+        transform: translate(26%, -50%) scale(0.76) rotateY(-36deg);
+        opacity: 0.72;
+    }
+
+    to {
+        transform: translate(90%, -50%) scale(0.62) rotateY(-42deg);
+        opacity: 0;
+    }
 }
 
 @media (max-width: 900px) {
-    .featured-model-card {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding: 25px;
+    .modelos-carousel {
+        grid-template-columns: 44px minmax(0, 1fr) 44px;
+        padding: 72px 10px 18px;
     }
-    .featured-image {
-        max-width: 100%;
-        margin-bottom: 20px;
+
+    .modelo-slide {
+        width: min(620px, 73%);
+        height: 100%;
+        border-radius: 18px;
+    }
+
+    .modelos-stage {
+        width: min(860px, 100%);
+        height: min(56vh, 460px);
+    }
+
+    .modelo-preview {
+        width: min(300px, 36%);
+        height: 76%;
+    }
+
+    .modelo-preview-left {
+        transform: translate(-118%, -50%) scale(0.72) rotateY(33deg);
+    }
+
+    .modelo-preview-right {
+        transform: translate(18%, -50%) scale(0.72) rotateY(-33deg);
+    }
+
+    .modelo-slide-header {
+        padding: 14px 14px 8px;
+    }
+
+    .modelo-info {
+        padding: 10px 14px 12px;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 620px) {
+    #modelos.onepage-section {
+        min-height: auto;
+    }
+
+    .modelos-carousel {
+        min-height: calc(72vh - 20px);
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: 1fr auto;
+        padding: 68px 10px 14px;
+    }
+
+    .modelos-stage {
+        width: 100%;
+        height: min(52vh, 420px);
+    }
+
+    .modelo-slide {
+        width: min(100%, 560px);
+        border-radius: 16px;
+    }
+
+    .modelo-preview {
+        display: none;
+    }
+
+    .modelos-stage.is-animating-next .modelo-slide,
+    .modelos-stage.is-animating-prev .modelo-slide {
+        animation: none;
+    }
+
+    .carousel-arrow {
+        grid-row: 1;
+        position: absolute;
+        bottom: 36px;
+    }
+
+    .carousel-arrow-left {
+        left: 16px;
+    }
+
+    .carousel-arrow-right {
+        right: 16px;
+    }
+
+    .carousel-dots {
+        grid-column: 1;
+        margin-top: 12px;
+    }
+
+    .modelos-glow {
+        display: none;
     }
 }
 

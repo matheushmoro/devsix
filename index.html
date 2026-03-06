@@ -77,51 +77,40 @@
         </section>
 
         <section id="modelos" class="onepage-section">
-            <div class="shelf-container">
-                <div class="shelf-header">
-                    <h2>Nossos Modelos</h2>
+            <div class="modelos-carousel" aria-label="Carrossel de modelos">
+                <div class="modelos-glow modelos-glow-left" aria-hidden="true"></div>
+                <div class="modelos-glow modelos-glow-right" aria-hidden="true"></div>
+
+                <button class="carousel-arrow carousel-arrow-left" id="modelos-prev" aria-label="Modelo anterior">&#10094;</button>
+
+                <div class="modelos-stage" id="modelos-stage">
+                    <article class="modelo-preview modelo-preview-left" id="modelo-prev-preview" aria-hidden="true">
+                        <div class="modelo-preview-media" id="modelo-prev-media"></div>
+                        <p class="modelo-preview-title" id="modelo-prev-titulo"></p>
+                    </article>
+
+                    <article class="modelo-slide" id="modelo-slide" aria-live="polite">
+                        <header class="modelo-slide-header">
+                            <span class="modelo-slide-kicker">Modelos DevSix</span>
+                            <h2 id="modelo-titulo">Landing de Alta Conversao</h2>
+                        </header>
+
+                        <div class="modelo-media" id="modelo-media"></div>
+
+                        <div class="modelo-info">
+                            <p id="modelo-descricao">Template estrategico com foco em captura de leads, carregamento rapido e secoes claras para guiar o visitante ate a acao principal.</p>
+                        </div>
+                    </article>
+
+                    <article class="modelo-preview modelo-preview-right" id="modelo-next-preview" aria-hidden="true">
+                        <div class="modelo-preview-media" id="modelo-next-media"></div>
+                        <p class="modelo-preview-title" id="modelo-next-titulo"></p>
+                    </article>
                 </div>
 
-                <div class="featured-model-card">
-                    <div class="featured-content">
-                        <span class="featured-badge">Destaque da Semana</span>
-                        <h3>Ultimate Pro</h3>
-                        <p>A solução completa para startups e empresas de tecnologia. Pagina personalizada do jeito que
-                            o cliente desejar.</p>
-                        <button class="product-btn" style="max-width: 200px;">Ver Detalhes</button>
-                    </div>
-                    <div class="featured-image">
-                        <video autoplay loop muted playsinline poster="./img/modelo1.jpg">
-                            <source src="./img/logincaue.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
+                <button class="carousel-arrow carousel-arrow-right" id="modelos-next" aria-label="Próximo modelo">&#10095;</button>
 
-                <div class="shelf-grid">
-                    <div class="product-card">
-                        <img src="./img/modelo1.jpg" alt="Landing Page Vendas">
-                        <div class="product-info">
-                            <h3>Landing Page Vendas</h3>
-                            <button class="product-btn">Ver Detalhes</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="./img/modelo2.jpg" alt="Landing Page Institucional">
-                        <div class="product-info">
-                            <h3>Institucional Premium</h3>
-                            <button class="product-btn">Ver Detalhes</button>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="./img/modelo3.jpg" alt="E-commerce Start">
-                        <div class="product-info">
-                            <h3>E-commerce Start</h3>
-                            <button class="product-btn">Ver Detalhes</button>
-                        </div>
-                    </div>
-                </div>
+                <div class="carousel-dots" id="modelos-dots" aria-label="Selecionar modelo"></div>
             </div>
         </section>
 
@@ -527,6 +516,8 @@
             <p>2026 DevSix. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script src="./script.js" defer></script>
 </body>
 
 </html>

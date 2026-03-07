@@ -25,17 +25,19 @@ const modelos = [
 		description: "Versao animada para apresentar experiencia real do projeto e demonstrar navegacao com mais impacto visual.",
 		type: "video",
 		src: "./img/logincaue.mp4",
-		poster: "./img/modelo1.jpg"
+		poster: "./img/logincaue-img.png"
 	}
 ];
 
 const mediaContainer = document.getElementById("modelo-media");
 const titleElement = document.getElementById("modelo-titulo");
 const descriptionElement = document.getElementById("modelo-descricao");
+const headerPanel = document.getElementById("modelo-header-panel");
+const infoPanel = document.getElementById("modelo-info-panel");
 const prevMediaContainer = document.getElementById("modelo-prev-media");
 const nextMediaContainer = document.getElementById("modelo-next-media");
-const prevTitleElement = document.getElementById("modelo-prev-titulo");
-const nextTitleElement = document.getElementById("modelo-next-titulo");
+const enterLeftMediaContainer = document.getElementById("modelo-enter-left-media");
+const enterRightMediaContainer = document.getElementById("modelo-enter-right-media");
 const dotsContainer = document.getElementById("modelos-dots");
 const prevButton = document.getElementById("modelos-prev");
 const nextButton = document.getElementById("modelos-next");
@@ -46,10 +48,12 @@ if (
 	mediaContainer &&
 	titleElement &&
 	descriptionElement &&
+	headerPanel &&
+	infoPanel &&
 	prevMediaContainer &&
 	nextMediaContainer &&
-	prevTitleElement &&
-	nextTitleElement &&
+	enterLeftMediaContainer &&
+	enterRightMediaContainer &&
 	dotsContainer &&
 	prevButton &&
 	nextButton &&
@@ -60,6 +64,12 @@ if (
 	let isAnimating = false;
 	const AUTO_PLAY_DELAY = 5000;
 	const TRANSITION_DURATION = 560;
+	const MOBILE_TRANSITION_OUT_MS = 220;
+	const SWIPE_MIN_DISTANCE = 42;
+	const SWIPE_MAX_VERTICAL = 34;
+	let touchStartX = null;
+	let touchStartY = null;
+	let mobileTransitionDirection = "next";
 
 	function getIndiceCircular(index) {
 		return (index + modelos.length) % modelos.length;
@@ -88,10 +98,36 @@ if (
 		});
 	}
 
+	function animarTextoModelo() {
+		headerPanel.classList.remove("is-entering");
+		infoPanel.classList.remove("is-entering");
+
+		void headerPanel.offsetWidth;
+		void infoPanel.offsetWidth;
+
+		headerPanel.classList.add("is-entering");
+		infoPanel.classList.add("is-entering");
+	}
+
+	function animarEntradaMobile() {
+		if (!window.matchMedia("(max-width: 620px)").matches) {
+			return;
+		}
+
+		stageElement.classList.remove("is-mobile-entering");
+		stageElement.classList.remove("is-mobile-entering-next");
+		stageElement.classList.remove("is-mobile-entering-prev");
+		void stageElement.offsetWidth;
+		stageElement.classList.add("is-mobile-entering");
+		stageElement.classList.add(mobileTransitionDirection === "prev" ? "is-mobile-entering-prev" : "is-mobile-entering-next");
+	}
+
 	function renderModelo(index) {
 		const modelo = modelos[getIndiceCircular(index)];
 		const modeloPrevio = modelos[getIndiceCircular(index - 1)];
 		const modeloSeguinte = modelos[getIndiceCircular(index + 1)];
+		const modeloEntradaEsquerda = modelos[getIndiceCircular(index - 2)];
+		const modeloEntradaDireita = modelos[getIndiceCircular(index + 2)];
 
 		titleElement.textContent = modelo.title;
 		descriptionElement.textContent = modelo.description;
@@ -99,10 +135,12 @@ if (
 
 		prevMediaContainer.innerHTML = montarMidia(modeloPrevio, true);
 		nextMediaContainer.innerHTML = montarMidia(modeloSeguinte, true);
-		prevTitleElement.textContent = modeloPrevio.title;
-		nextTitleElement.textContent = modeloSeguinte.title;
+		enterLeftMediaContainer.innerHTML = montarMidia(modeloEntradaEsquerda, true);
+		enterRightMediaContainer.innerHTML = montarMidia(modeloEntradaDireita, true);
 
 		atualizarDots(getIndiceCircular(index));
+		animarTextoModelo();
+		animarEntradaMobile();
 	}
 
 	function suportaAnimacao3D() {
@@ -119,9 +157,20 @@ if (
 			return;
 		}
 
+		mobileTransitionDirection = direction;
+
 		if (!suportaAnimacao3D()) {
-			const passo = direction === "next" ? 1 : -1;
-			irParaModelo(modeloAtual + passo);
+			isAnimating = true;
+			const classeAnimacao = direction === "next" ? "is-animating-next" : "is-animating-prev";
+			stageElement.classList.add(classeAnimacao);
+
+			window.setTimeout(() => {
+				const passo = direction === "next" ? 1 : -1;
+				irParaModelo(modeloAtual + passo);
+				stageElement.classList.remove(classeAnimacao);
+				isAnimating = false;
+			}, MOBILE_TRANSITION_OUT_MS);
+
 			return;
 		}
 
@@ -135,6 +184,39 @@ if (
 			stageElement.classList.remove(classeAnimacao);
 			isAnimating = false;
 		}, TRANSITION_DURATION);
+	}
+
+	function registrarInicioToque(event) {
+		const touch = event.changedTouches[0];
+		touchStartX = touch.clientX;
+		touchStartY = touch.clientY;
+		pararAutoPlay();
+	}
+
+	function registrarFimToque(event) {
+		const touch = event.changedTouches[0];
+		if (touchStartX === null || touchStartY === null) {
+			iniciarAutoPlay();
+			return;
+		}
+
+		const deltaX = touch.clientX - touchStartX;
+		const deltaY = touch.clientY - touchStartY;
+		const swipeHorizontal = Math.abs(deltaX) >= SWIPE_MIN_DISTANCE && Math.abs(deltaY) <= SWIPE_MAX_VERTICAL;
+
+		if (swipeHorizontal && !isAnimating) {
+			if (deltaX < 0) {
+				animarTransicao("next");
+			} else {
+				animarTransicao("prev");
+			}
+			reiniciarAutoPlay();
+		} else {
+			iniciarAutoPlay();
+		}
+
+		touchStartX = null;
+		touchStartY = null;
 	}
 
 	function iniciarAutoPlay() {
@@ -212,8 +294,13 @@ if (
 	if (carouselRoot) {
 		carouselRoot.addEventListener("mouseenter", pararAutoPlay);
 		carouselRoot.addEventListener("mouseleave", iniciarAutoPlay);
-		carouselRoot.addEventListener("touchstart", pararAutoPlay, { passive: true });
-		carouselRoot.addEventListener("touchend", iniciarAutoPlay);
+		carouselRoot.addEventListener("touchstart", registrarInicioToque, { passive: true });
+		carouselRoot.addEventListener("touchend", registrarFimToque, { passive: true });
+		carouselRoot.addEventListener("touchcancel", () => {
+			touchStartX = null;
+			touchStartY = null;
+			iniciarAutoPlay();
+		}, { passive: true });
 		carouselRoot.addEventListener("focusin", pararAutoPlay);
 		carouselRoot.addEventListener("focusout", iniciarAutoPlay);
 	}

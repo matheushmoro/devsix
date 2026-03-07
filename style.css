@@ -1011,7 +1011,7 @@ header {
     --modelo-preview-width: min(390px, 41%);
     --modelo-preview-height: 82%;
     --modelo-slide-half-height: 39%;
-    --modelo-meta-top-offset: 30px;
+    --modelo-meta-top-offset: 56px; /* Espaço consistente entre h2 e modelo do meio */
     --modelo-meta-top-gap: 56px;
     --modelo-meta-bottom-gap: 18px;
 }
@@ -1251,10 +1251,11 @@ header {
 }
 
 .modelo-slide-header h2 {
-    margin: 0;
+    margin: 0 0 18px 0; /* Garante espaçamento visual abaixo do h2 */
     font-size: clamp(24px, 3.5vw, 44px);
     line-height: 1.1;
     color: #ffffff;
+    /* Ajuste de margem para manter distância do modelo do meio */
 }
 
 .modelo-media {

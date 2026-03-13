@@ -1,3 +1,42 @@
+document.addEventListener("DOMContentLoaded", function () {
+	const briefingForm = document.getElementById("briefingForm");
+	if (briefingForm) {
+		briefingForm.addEventListener("submit", function (e) {
+			e.preventDefault();
+			// Coletar dados do formulário
+			const nome = document.getElementById("briefing-name").value;
+			const email = document.getElementById("briefing-email").value;
+			const whatsapp = document.getElementById("briefing-whatsapp").value;
+			const empresa = document.getElementById("briefing-company").value;
+			const segmento = document.getElementById("briefing-segment").value;
+			const hasSite = document.getElementById("briefing-has-site").value;
+			const objetivo = document.getElementById("briefing-goal").value;
+			const paginas = document.getElementById("briefing-pages").value;
+			const referencias = document.getElementById("briefing-references").value;
+			const prazo = document.getElementById("briefing-deadline").value;
+			const orcamento = document.getElementById("briefing-budget").value;
+			const observacoes = document.getElementById("briefing-notes").value;
+			// Montar corpo do e-mail
+			let corpo =
+				`Nome: ${nome}%0D%0A` +
+				`Email: ${email}%0D%0A` +
+				`WhatsApp: ${whatsapp}%0D%0A` +
+				`Empresa: ${empresa}%0D%0A` +
+				`Segmento: ${segmento}%0D%0A` +
+				`Já possui site?: ${hasSite}%0D%0A` +
+				`Objetivo do site: ${objetivo}%0D%0A` +
+				`Páginas desejadas: ${paginas}%0D%0A` +
+				`Sites de referência: ${referencias}%0D%0A` +
+				`Prazo desejado: ${prazo}%0D%0A` +
+				`Orçamento estimado: ${orcamento}%0D%0A` +
+				`Observações: ${observacoes}`;
+			// Abrir mailto
+			const mailto = `mailto:devsix.landingpages@gmail.com?subject=Briefing%20Landing%20Page%20-%20${encodeURIComponent(nome)}&body=${corpo}`;
+			window.location.href = mailto;
+		});
+	}
+});
+
 const modelos = [
 	{
 		title: "Landing de Alta Conversao",

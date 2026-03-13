@@ -48,7 +48,6 @@ input[type="submit"],
     margin-top: 20px;
 }
 
-/* Header Styles */
 header {
     display: flex;
     justify-content: space-between;
@@ -126,79 +125,6 @@ header {
     color: #ffffff;
 }
 
-/* Botão especial na navegação */
-#link-nav .nav-button-special {
-    background: transparent;
-    border: 2px solid #7c3aed;
-    color: #e9d5ff;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-}
-
-#link-nav .nav-button-special:hover {
-    background: #7c3aed;
-    color: #ffffff;
-}
-
-/* Search Bar Styles */
-.search {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 24px;
-    padding: 4px 8px 4px 20px;
-    height: 48px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.search:hover {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.search input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 16px;
-    width: 220px;
-}
-
-.search input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.search button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s ease;
-    margin-left: 5px;
-}
-
-.search button:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.search button img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    filter: sepia(1) hue-rotate(240deg) saturate(3);
-    margin: 0;
-}
-
-/* Cart Button */
 .cart-btn {
     background: rgba(255, 255, 255, 0.15);
     border: none;
@@ -233,8 +159,6 @@ header {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
-/* Main Content Styles */
 
 .principal {
     display: flex;
@@ -374,15 +298,6 @@ header {
     margin-bottom: 8px;
 }
 
-.principal-left .brand-name {
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.span2 {
-    color: #000000;
-}
-
 .principal-left h2 {
     font-size: 32px;
     font-weight: 700;
@@ -476,7 +391,6 @@ header {
     box-shadow: 0 4px 14px rebeccapurple;
 }
 
-/* Button Fale Conosco */
 .btn-fale-conosco {
     background: black;
     background-image: url("./img/logo.header.jpg");
@@ -528,7 +442,6 @@ header {
     }
 }
 
-/* Middle Section */
 .principal-middle {
     flex: 1;
     display: grid;
@@ -624,7 +537,6 @@ header {
     opacity: 0.2;
 }
 
-/* Right Section - Features */
 .principal-right {
     flex: 0 0 280px;
     padding-left: 120px;
@@ -791,7 +703,6 @@ header {
     margin-top: 10px;
 }
 
-/* Responsive Design */
 @media (max-width: 968px) {
     .principal {
         flex-direction: column;
@@ -2415,35 +2326,6 @@ header {
 
 .members-simple-container {
     max-width: 900px;
-}
-
-.members-simple-box {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.members-simple-box h2 {
-    font-size: 28px;
-    margin-bottom: 14px;
-}
-
-.members-simple-box p {
-    color: #e9d5ff;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.members-simple-box .submit-btn {
-    display: inline-block;
-    text-decoration: none;
-}
-
-/* --- Estilos da Secao Briefing --- */
-
-#briefing {
-    padding-top: 28px;
-    padding-bottom: 28px;
 }
 
 .briefing-container {
